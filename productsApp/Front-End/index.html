@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>productApp</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+        /* Roboto Slab font having font-weight:600 is imported from google fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&display=swap');
+
+        body {
+            font-family: 'Roboto Slab', serif;
+            margin: 0;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        /* Nav Bar styling */
+        .brand-name {
+            text-align: center;
+            color: brown;
+        }
+
+        .linkbar {
+            list-style-type: none;
+            display: flex;
+            width: 100%;
+            background-color: dodgerblue;
+            justify-content: space-evenly;
+            box-sizing: border-box;
+            padding: 20px;
+        }
+
+        .linkbar a {
+            text-decoration: none;
+            color: white;
+        }
+
+        /* Nav Bar styling Ends*/
+        #form {
+            width: 450px;
+            border: 1px solid lightgrey;
+            margin: 65px auto;
+            border-radius: 16px;
+            padding: 100px 25px;
+            text-align: center;
+        }
+
+        .p-url,
+        .p-name,
+        .p-desc,
+        .p-price,
+        .p-rating {
+            color: brown;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 200px;
+            height: 20px;
+            border: 1px solid dodgerblue;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            border: none;
+            padding: 15px 70px;
+            border-radius: 25px;
+            background-color: black;
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .flex-box-body {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            box-sizing: border-box;
+            /* margin-top:50px; */
+        }
+
+        .card {
+            width: 300px;
+            height: 350px;
+            /* margin:10px;  */
+            padding: 10px;
+            margin-bottom: 0;
+        }
+
+        .c-top {
+            position: relative;
+        }
+
+        .c-image {
+            width: 100%;
+            border-radius: 14px;
+        }
+
+        .heart-image {
+            width: 25px;
+            height: 25px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .c-bottom {
+            margin-top: 10px;
+            position: relative;
+        }
+
+        .desc .desription {
+            color: grey;
+        }
+
+        .c-bottom .heading,
+        .price-link {
+            color: black;
+            font-weight: bold;
+        }
+
+        .c-bottom .price-link {
+            text-decoration: underline;
+        }
+
+        .c-bottom .star-img {
+            width: 15px;
+            height: 15px;
+        }
+
+        .c-bottom .rating {
+            font-weight: bold;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <!--Nav Bar-->
+    <div class="navbar">
+        <h1 class="brand-name">productsApp</h1>
+        <ul class="linkbar">
+            <li><a href="/">Home</a></li>
+            <!-- <li><a href="/add">Add product</a></li> -->
+            <li><a href="/register">Register</a></li>
+            <li><a href="/login">Login</a></li>
+        </ul>
+    </div>
+    <div id="form">
+        <div class="p-url">
+            <label for="url">Image Url &emsp;&emsp;</label>
+            <input type="text" id="url">
+        </div>
+        <div class="p-name">
+            <label for="name">Product Name&nbsp;</label>
+            <input type="text" id="name">
+        </div>
+        <div class="p-desc">
+            <label for="desc">Description&emsp;&nbsp;&nbsp;</label>
+            <input type="text" id="desc">
+        </div>
+        <div class="p-price">
+            <label for="price">Price&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;</label>
+            <input type="number" id="price">
+        </div>
+        <div class="p-rating">
+            <label for="rating">Rating&emsp;&emsp;&emsp;&emsp;</label>
+            <input type="number" id="rating">
+        </div>
+        <button type="submit" id="submit">Add Product&emsp;&emsp;</button>
+    </div>
+    <!--Body-->
+    <div class="flex-box-body" id="flexbox">
+        <div class="card">
+            <div class="c-top">
+                <a href="#"><img src="https://source.unsplash.com/1000x800/?cleanser" alt="Image" class="c-image"></a>
+                <!-- <a href="#" class="heart-link"><img src="heart.png" alt="heart-image" class="heart-image"></a> -->
+            </div>
+            <div class="c-bottom">
+                <div class="desc">
+                    <span class="heading">Face Cleanser</span><br>
+                    <span class="desription">Oil control charcol face wash</span><br>
+                    <span class="price"><a href="#" class="price-link"> Rs. 356 /- </a></span>
+                </div>
+                <div class="rating">
+                    <!-- <img src="star.png" alt="star-image" class="star-img"> -->
+                    <span class="value">4.96</span>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="c-top">
+                <a href="#"><img src="https://source.unsplash.com/1000x800/?cleanser" alt="Image" class="c-image"></a>
+                <!-- <a href="#" class="heart-link"><img src="heart.png" alt="heart-image" class="heart-image"></a> -->
+            </div>
+            <div class="c-bottom">
+                <div class="desc">
+                    <span class="heading">Face Cleanser</span><br>
+                    <span class="desription">Oil control charcol face wash</span><br>
+                    <span class="price"><a href="#" class="price-link"> Rs. 356 /- </a></span>
+                </div>
+                <div class="rating">
+                    <!-- <img src="star.png" alt="star-image" class="star-img"> -->
+                    <span class="value">4.96</span>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="c-top">
+                <a href="#"><img src="https://source.unsplash.com/1000x800/?cleanser" alt="Image" class="c-image"></a>
+                <!-- <a href="#" class="heart-link"><img src="heart.png" alt="heart-image" class="heart-image"></a> -->
+            </div>
+            <div class="c-bottom">
+                <div class="desc">
+                    <span class="heading">Face Cleanser</span><br>
+                    <span class="desription">Oil control charcol face wash</span><br>
+                    <span class="price"><a href="#" class="price-link"> Rs. 356 /- </a></span>
+                </div>
+                <div class="rating">
+                    <!-- <img src="star.png" alt="star-image" class="star-img"> -->
+                    <span class="value">4.96</span>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="c-top">
+                <a href="#"><img src="https://source.unsplash.com/1000x800/?cleanser" alt="Image" class="c-image"></a>
+                <!-- <a href="#" class="heart-link"><img src="heart.png" alt="heart-image" class="heart-image"></a> -->
+            </div>
+            <div class="c-bottom">
+                <div class="desc">
+                    <span class="heading">Face Cleanser</span><br>
+                    <span class="desription">Oil control charcol face wash</span><br>
+                    <span class="price"><a href="#" class="price-link"> Rs. 356 /- </a></span>
+                </div>
+                <div class="rating">
+                    <!-- <img src="star.png" alt="star-image" class="star-img"> -->
+                    <span class="value">4.96</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        //POST method implementation:
+        async function postProductData(url = "", data = {}) {
+            console.log("url :", url)
+            console.log("data :", data)
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*"
+                },
+                body: JSON.stringify(data),
+            });
+            let result = await response.json(); // parses JSON response into native JavaScript objects
+            return result;
+        }
+
+        let submit = document.getElementById("submit")
+        submit.addEventListener('click', async () => {
+
+            let imgUrl = document.getElementById("url").value;
+            let name = document.getElementById("name").value;
+            let desc = document.getElementById("desc").value;
+            let price = document.getElementById("price").value;
+            let rating = document.getElementById("rating").value;
+
+            console.log("Submitting add product data " + name)
+            const response = await postProductData("/",
+                {
+                    "p_url": imgUrl,
+                    "p_name": name,
+                    "p_desc": desc,
+                    "p_price": price,
+                    "p_rating": rating
+                })
+            console.log("response: ", response)
+            if (response.success) {
+                document.getElementById("url").value = " ";
+                document.getElementById("name").value = " ";
+                document.getElementById("desc").value = " ";
+                document.getElementById("price").value = " ";
+                document.getElementById("rating").value = " ";
+
+                // add js code to add one more card in the flexbox
+                let card = `
+                <div class="card">
+                    <div class="c-top">
+                        <a href="#"><img src = ${imgUrl} alt="Image" class="c-image"></a>
+                    </div>
+                    <div class="c-bottom">
+                        <div class="desc">
+                            <span class="heading">${name}</span><br>
+                            <span class="desription">${desc}</span><br>
+                            <span class="price"><a href="#" class="price-link">${price}</a></span>
+                        </div>
+                        <div class="rating">
+                            <span class="value">${rating}</span>
+                        </div>
+                    </div>
+                </div>`;
+                console.log("flexbox",flexbox)
+                flexbox = document.getElementById("flexbox")
+                console.log("flexbox",flexbox)
+                flexbox.innerHTML += card;
+                alert("Product successfully Added.");
+            }
+            else 
+            {
+                alert("Prduct Add failed.");
+            }
+        });
+    </script>
+</body>
+</html>

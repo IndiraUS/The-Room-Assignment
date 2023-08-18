@@ -1,0 +1,132 @@
+/* Roboto Slab font having font-weight:600 is imported from google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&display=swap');
+body
+{
+    font-family: 'Roboto Slab', serif;
+    margin: 0;
+    padding:0;
+}
+
+/* Nav Bar styling */
+.brand-name
+{
+    text-align: center;
+    color: brown;
+}
+.linkbar
+{
+    list-style-type: none;
+    display:flex;
+    width:100%;
+    background-color: dodgerblue;
+    justify-content: space-evenly;
+    box-sizing: border-box;
+    padding: 20px;
+} 
+.linkbar a   
+{
+    text-decoration: none;
+    color:white;
+}
+/* Nav Bar styling Ends*/
+
+.flex-box-body
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    box-sizing: border-box;
+    /* margin-top:50px; */
+}
+.card
+{
+    width:300px;
+    height:350px;
+    /* margin:10px;  */
+    padding:10px;
+    margin-bottom:0;
+}
+.c-top
+{
+    position: relative;
+}
+.c-image
+{
+    width:100%;
+    border-radius: 14px;
+}
+.heart-image
+{
+    width:25px;
+    height:25px;
+    position: absolute;
+    top:10px;
+    right: 10px;
+}
+.c-bottom
+{
+   margin-top:10px; 
+   position: relative; 
+}
+.desc .desription
+{
+    color:grey;
+}
+.c-bottom .heading, .price-link
+{
+    color: black;
+    font-weight:bold;
+}
+.c-bottom .price-link
+{   
+    text-decoration: underline;
+}
+.c-bottom .star-img
+{
+    width:15px;
+    height:15px;
+}
+.c-bottom .rating
+{
+    font-weight:bold;
+    position: absolute;
+    top:0;
+    right:0;  
+}
+
+/* user and registration form styling */
+#form
+{
+    width:450px;
+    border:1px solid lightgrey;
+    margin:65px auto;
+    border-radius: 16px;
+    padding:100px 25px;
+    text-align: center;
+}
+.username, .password
+{
+    color: brown;
+    margin-bottom:10px;
+}
+input
+{
+    width:200px;
+    height:20px;
+    border:1px solid dodgerblue;
+    border-radius: 5px;
+    font-size: 16px;
+}
+button
+{
+    width:100px;
+    border:none;
+    padding:10px 20px;
+    border-radius: 25px;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
