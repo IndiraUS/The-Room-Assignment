@@ -77,12 +77,11 @@
 <body>
   <!--Nav Bar-->
   <div class="navbar">
-    <h1 class="brand-name">productsApp</h1>
+    <h1 class="brand-name">Shopping List</h1>
     <ul class="linkbar">
         <li><a href="#">Home</a></li>
-        <li><a href="#">Add product</a></li>
         <li><a href="#">Register</a></li>
-        <li><a href="#">Login</a></li>
+        <li><a href="#" id="login">Login</a></li>
     </ul>
  </div>
     <div id="form">
@@ -96,16 +95,6 @@
         </div>
         <button type="submit" id="submit">Login</button>
     </div> 
-    <!-- <script>
-        let username = document.getElementById("user");
-        let password = document.getElementById("pwd");
-
-        let submit = document.getElementById("s-button");
-        submit.addEventListener("click",()=>{
-        alert("The user " + username.value +" has logged in successfully");
-        }); 
-        
-    </script> -->
     <script>
         //POST method implementation:
         async function postLoginData(url = "", data = {}) {
@@ -135,6 +124,7 @@
                 alert("Successfully Logged In.");
                 document.getElementById("user").value = " ";
                 document.getElementById("pwd").value = " " ;
+                nav_login = document.getElementById("login");
                 window.location.href = '/';
             }
             else
