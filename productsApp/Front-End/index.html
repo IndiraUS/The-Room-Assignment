@@ -40,12 +40,13 @@
 
         /* Nav Bar styling Ends*/
         #form {
-            width: 450px;
+            width: 400px;
             border: 1px solid lightgrey;
-            margin: 65px auto;
+            margin: 25px auto;
             border-radius: 16px;
-            padding: 100px 25px;
+            padding:20px;
             text-align: center;
+            box-sizing: border-box;
         }
 
         .p-url,
@@ -91,6 +92,7 @@
             /* margin:10px;  */
             padding: 10px;
             margin-bottom: 0;
+            /* border:1px solid lightgrey; */
         }
 
         .c-top {
@@ -180,22 +182,23 @@
     <div class="flex-box-body" id="flexbox">
         <div class="card">
             <div class="c-top">
-                <a href="#"><img src="https://source.unsplash.com/1000x800/?cleanser" alt="Image" class="c-image"></a>
+                <img src="https://source.unsplash.com/1000x800/?cleanser" alt="Image" class="c-image">
             </div>
             <div class="c-bottom">
                 <div class="desc">
-                    <span class="heading">Face Cleanser</span><br>
+                    <span class="heading" id="name">Face Cleanser</span><br>
                     <span class="desription">Oil control charcol face wash</span><br>
                     <span class="price"><a href="#" class="price-link"> Rs. 356 /- </a></span>
                 </div>
                 <div class="rating">
-                    <span class="value">*4.96</span>
+                    <span class="value">*4.96</span><br>
+                    <a href="#" class="delete" onClick="deleteItem(event)">delete</a>
                 </div>
             </div>
         </div>
     <div class="card">
         <div class="c-top">
-            <a href="#"><img src="https://source.unsplash.com/1000x800/?eyeliner" alt="Image" class="c-image"></a>
+            <img src="https://source.unsplash.com/1000x800/?eyeliner" alt="Image" class="c-image">
         </div>
         <div class="c-bottom">
             <div class="desc">
@@ -204,13 +207,14 @@
                 <span class="price"><a href="#" class="price-link"> Rs. 856 /- </a></span>
             </div>
             <div class="rating">
-                <span class="value">*4.6</span>
+                <span class="value">*4.6</span><br>
+                <a href="#" class="delete" onClick="deleteItem(event)">delete</a>
             </div>
         </div>
     </div>
     <div class="card">
         <div class="c-top">
-            <a href="#"><img src="https://source.unsplash.com/1000x800/?lotion" alt="Image" class="c-image"></a>
+            <img src="https://source.unsplash.com/1000x800/?lotion" alt="Image" class="c-image">
         </div>
         <div class="c-bottom">
             <div class="desc">
@@ -219,13 +223,14 @@
                 <span class="price"><a href="#" class="price-link">Rs. 400 /- </a></span>
             </div>
             <div class="rating">
-                <span class="value">*4.3</span>
+                <span class="value">*4.3</span><br>
+                <a href="#" class="delete" onClick="deleteItem(event)">delete</a>
             </div>
         </div>
     </div>
     <div class="card">
         <div class="c-top">
-            <a href="#"><img src="https://source.unsplash.com/1000x800/?nail polish" alt="Image" class="c-image"></a>
+            <img src="https://source.unsplash.com/1000x800/?nail polish" alt="Image" class="c-image">
         </div>
         <div class="c-bottom">
             <div class="desc">
@@ -234,13 +239,14 @@
                 <span class="price"><a href="#" class="price-link">Rs. 100 /- </a></span>
             </div>
             <div class="rating">
-                <span class="value">*3.9</span>
+                <span class="value">*3.9</span><br>
+                <a href="#" class="delete" onClick="deleteItem(event)">delete</a>
             </div>
         </div>
     </div>
     <div class="card">
         <div class="c-top">
-            <a href="#"><img src="https://source.unsplash.com/1000x800/?lipstic" alt="Image" class="c-image"></a>
+            <img src="https://source.unsplash.com/1000x800/?lipstic" alt="Image" class="c-image">
         </div>
         <div class="c-bottom">
             <div class="desc">
@@ -249,7 +255,8 @@
                 <span class="price"><a href="#" class="price-link">Rs. 900 /- </a></span>
             </div>
             <div class="rating">
-                <span class="value">*4.5</span>
+                <span class="value">*4.5</span><br>
+                <a href="#" class="delete" onClick="deleteItem(event)">delete</a>
             </div>
         </div>
     </div>
@@ -301,7 +308,7 @@
                 let card = `
                 <div class="card">
                     <div class="c-top">
-                        <a href="#"><img src = ${imgUrl} alt="Image" class="c-image"></a>
+                        <img src = ${imgUrl} alt="Image" class="c-image">
                     </div>
                     <div class="c-bottom">
                         <div class="desc">
@@ -310,7 +317,8 @@
                             <span class="price"><a href="#" class="price-link">${price}</a></span>
                         </div>
                         <div class="rating">
-                            <span class="value">${rating}</span>
+                            <span class="value">*${rating}</span><br>
+                            <a href="#" class="delete" onClick="deleteItem(event)">delete</a>
                         </div>
                     </div>
                 </div>`;
@@ -325,6 +333,20 @@
                 alert("Prduct Add failed.");
             }
         });
+    
+        function deleteItem(event)
+        {
+            //event.preventDefault();
+            const deleteProduct = event.target
+        
+            const cardToDelete =((deleteProduct.parentElement).parentElement).parentElement;
+            cardToDelete.remove();
+            const imgUrl = cardToDelete.children[0].childNodes[1].attributes[0].nodeValue;
+            console.log("imgurl: ",imgUrl);
+            // send this imgUrl to backend using postDelete from here
+            // add app.post('/') in index.js and find the unique imgUrl and delete from DB
+            console.dir(cardToDelete);
+        }
     </script>
 </body>
 </html>
