@@ -28,7 +28,7 @@
             display: flex;
             width: 100%;
             background-color: dodgerblue;
-            justify-content: space-evenly;
+            justify-content: space-between;
             box-sizing: border-box;
             padding: 20px;
         }
@@ -147,12 +147,12 @@
 <body>
     <!--Nav Bar-->
     <div class="navbar">
-        <h1 class="brand-name">Shopping List</h1>
+        <h1 class="brand-name">The productApp</h1>
         <ul class="linkbar">
-            <li><a href="/">Home</a></li>
-            <!-- <li><a href="/add">Add product</a></li> -->
-            <li><a href="/register">Register</a></li>
-            <li><a href="/login" id="login">Login</a></li>
+            <li style="color: white;">productApp</li>
+            <!-- <li><a href="/register">Register</a></li> -->
+            <!-- <li><a href="/login" id="login">Login</a></li> -->
+            <li><a href="#" id="login" onClick="logout(event)">Login</a></li>
         </ul>
     </div>
     <div id="form">
@@ -178,9 +178,11 @@
         </div>
         <button type="submit" id="submit">Add Product&emsp;&emsp;</button>
     </div>
+    <button onClick="loadProducts()" style="float: right;">Load Products from DB</button><br><br>
+    <hr style="color: lightgrey;">
     <!--Body-->
     <div class="flex-box-body" id="flexbox">
-        <div class="card">
+        <!-- <div class="card">
             <div class="c-top">
                 <img src="https://source.unsplash.com/1000x800/?cleanser" alt="Image" class="c-image">
             </div>
@@ -260,8 +262,26 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
     <script>
+        const username = localStorage.getItem("username");
+        if(username) // if logged in
+        {
+            document.getElementById("login").innerText = "Logout";
+        } 
+        function logout(event)
+        {
+            console.dir(event.target);
+            if (event.target.innerText == "Logout")
+            {
+                localStorage.clear();
+                window.location.href = "/";
+            }
+            else
+            {
+                window.location.href = "/login"; 
+            }
+        }
         //POST method implementation:
         async function postProductData(url = "", data = {}) {
             console.log("url :", url)
@@ -277,18 +297,19 @@
             let result = await response.json(); // parses JSON response into native JavaScript objects
             return result;
         }
+        
 
         let submit = document.getElementById("submit")
         submit.addEventListener('click', async () => {
 
-            let imgUrl = document.getElementById("url").value;
-            let name = document.getElementById("name").value;
-            let desc = document.getElementById("desc").value;
-            let price = document.getElementById("price").value;
-            let rating = document.getElementById("rating").value;
+            let imgUrl = document.getElementById("url").value.trim();
+            let name = document.getElementById("name").value.trim();
+            let desc = document.getElementById("desc").value.trim();
+            let price = document.getElementById("price").value.trim();
+            let rating = document.getElementById("rating").value.trim();
 
             console.log("Submitting add product data " + name)
-            const response = await postProductData("/",
+            const response = await postProductData("/add",
                 {
                     "p_url": imgUrl,
                     "p_name": name,
@@ -298,11 +319,11 @@
                 })
             console.log("response: ", response)
             if (response.success) {
-                document.getElementById("url").value = " ";
-                document.getElementById("name").value = " ";
-                document.getElementById("desc").value = " ";
-                document.getElementById("price").value = " ";
-                document.getElementById("rating").value = " ";
+                document.getElementById("url").value = "";
+                document.getElementById("name").value = "";
+                document.getElementById("desc").value = "";
+                document.getElementById("price").value = "";
+                document.getElementById("rating").value = "";
 
                 // add js code to add one more card in the flexbox
                 let card = `
@@ -330,22 +351,64 @@
             }
             else 
             {
-                alert("Prduct Add failed.");
+                alert("Prduct Add failed.Check if product url is unique");
             }
         });
-    
-        function deleteItem(event)
+
+        async function deleteItem(event)
         {
-            //event.preventDefault();
-            const deleteProduct = event.target
+            const deleteProduct = event.target;
         
             const cardToDelete =((deleteProduct.parentElement).parentElement).parentElement;
             cardToDelete.remove();
             const imgUrl = cardToDelete.children[0].childNodes[1].attributes[0].nodeValue;
             console.log("imgurl: ",imgUrl);
-            // send this imgUrl to backend using postDelete from here
-            // add app.post('/') in index.js and find the unique imgUrl and delete from DB
             console.dir(cardToDelete);
+
+            // send this imgUrl to backend using postDelete from here
+            const response = await postProductData("/delete",{"p_url": imgUrl})
+            console.log("response: ", response)
+            if (response.success) {
+                console.log("Inside index.html: Product deleted !")
+            }
+            else{
+                console.log("Inside index.html: Product deletetion failed !")
+            }
+        }
+        async function loadProducts()
+        {
+            const response = await postProductData("/home")
+            flexbox.innerHTML = " ";
+            if (response.success) {
+                console.log("Inside index.html: Home Page: response.products: ",response.products)
+                const products = response.products;
+                products.forEach(doc => {
+                    let card = `
+                <div class="card">
+                    <div class="c-top">
+                        <img src = ${doc.p_url} alt="Image" class="c-image">
+                    </div>
+                    <div class="c-bottom">
+                        <div class="desc">
+                            <span class="heading">${doc.p_name}</span><br>
+                            <span class="desription">${doc.p_desc}</span><br>
+                            <span class="price"><a href="#" class="price-link">${doc.p_price}</a></span>
+                        </div>
+                        <div class="rating">
+                            <span class="value">*${doc.p_rating}</span><br>
+                            <a href="#" class="delete" onClick="deleteItem(event)">delete</a>
+                        </div>
+                    </div>
+                </div>`; 
+                flexbox = document.getElementById("flexbox");
+                flexbox.innerHTML += card;
+                console.log("index.html: inside forEach()")
+                });
+            }
+            else{
+                console.log("Inside index.html: Can't Load Home Page !");
+                alert("Can't Load Home Page..");
+            }
         }
     </script>
 </body>

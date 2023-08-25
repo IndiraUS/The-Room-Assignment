@@ -27,7 +27,7 @@ body
     display:flex;
     width:100%;
     background-color: dodgerblue;
-    justify-content: space-evenly;
+    justify-content:space-between;
     box-sizing: border-box;
     padding: 20px;
 } 
@@ -77,11 +77,11 @@ button
 <body>
   <!--Nav Bar-->
   <div class="navbar">
-    <h1 class="brand-name">Shopping List</h1>
+    <h1 class="brand-name">The productApp</h1>
     <ul class="linkbar">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Register</a></li>
-        <li><a href="#">Login</a></li>
+        <li style="color: white;">productApp</li>
+        <!-- <li><a href="#">Register</a></li> -->
+        <li><a href="/login">Login</a></li>
     </ul>
  </div>
     <div id="form">
@@ -95,6 +95,7 @@ button
         </div>
         <button type="submit" id="submit">Register</button>
     </div>
+    <p style="text-align: center; color: brown;">If you are a registered user, please login</p>
     <script>
         //POST method implementation:
         async function postRegistertData(url = "", data = {}) {
@@ -114,16 +115,16 @@ button
     
         let submit = document.getElementById("submit")
         submit.addEventListener('click',async ()=>{
-            username = document.getElementById("user").value
-            password = document.getElementById("pwd").value
+            username = document.getElementById("user").value.trim()
+            password = document.getElementById("pwd").value.trim()
             console.log("Submitting registration data " + username + " " + " " + password)
             const response = await postRegistertData("/register",{"username":username,"password":password})
             console.log("response: ",response)
             if(response.success)
             {
                 alert("Successfully Registered. Now you can Login");
-                document.getElementById("user").value = " ";
-                document.getElementById("pwd").value = " " ;
+                document.getElementById("user").value = "";
+                document.getElementById("pwd").value = "" ;
                 window.location.href = '/login';
             }
             else

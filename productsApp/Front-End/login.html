@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <!-- <link rel="stylesheet" href="style.css"> -->
     <style>
     /* Roboto Slab font having font-weight:600 is imported from google fonts */
     @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&display=swap');
@@ -27,7 +26,7 @@
         display:flex;
         width:100%;
         background-color: dodgerblue;
-        justify-content: space-evenly;
+        justify-content: space-between;
         box-sizing: border-box;
         padding: 20px;
     } 
@@ -77,11 +76,11 @@
 <body>
   <!--Nav Bar-->
   <div class="navbar">
-    <h1 class="brand-name">Shopping List</h1>
+    <h1 class="brand-name">The productApp</h1>
     <ul class="linkbar">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Register</a></li>
-        <li><a href="#" id="login">Login</a></li>
+        <li style="color: white;">productApp</li>
+        <!-- <li><a href="#">Register</a></li> -->
+        <li><a href="/login" id="login">Login</a></li>
     </ul>
  </div>
     <div id="form">
@@ -114,8 +113,8 @@
     
         let submit = document.getElementById("submit")
         submit.addEventListener('click',async ()=>{
-            username = document.getElementById("user").value
-            password = document.getElementById("pwd").value
+            const username = document.getElementById("user").value.trim()
+            const password = document.getElementById("pwd").value.trim()
             console.log("Submitting login data " + username + " " + " " + password)
             const response = await postLoginData("/login",{"username":username,"password":password})
             console.log("response: ",response)
@@ -124,8 +123,9 @@
                 alert("Successfully Logged In.");
                 document.getElementById("user").value = " ";
                 document.getElementById("pwd").value = " " ;
-                nav_login = document.getElementById("login");
-                window.location.href = '/';
+                // storing username in local storage
+                localStorage.setItem("username",username);
+                window.location.href = '/home';
             }
             else
             {
