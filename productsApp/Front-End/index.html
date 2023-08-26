@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>productApp</title>
-    <!-- <link rel="stylesheet" href="style.css"> -->
     <style>
         /* Roboto Slab font having font-weight:600 is imported from google fonts */
         @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&display=swap');
@@ -77,16 +76,35 @@
             cursor: pointer;
             margin-top: 10px;
         }
-
-        .flex-box-body {
+        .flex-box-jokes
+        {
+            display:flex;
+            flex-wrap:wrap;
+            box-sizing: border-box;
+            justify-content: center;
+        }
+        .joke-card
+        {
+            width: 400px;
+            margin:10px; 
+            /* padding: 5px; */
+            margin-bottom: 0;
+            border:1px solid dodgerblue;
+            border-radius:14px;
+        }
+        .joke-card p
+        {
+            color:darkorchid;
+            padding-left:15px;
+        }
+        .flex-box-body{
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             box-sizing: border-box;
             /* margin-top:50px; */
         }
-
-        .card {
+        .card{
             width: 300px;
             height: 350px;
             /* margin:10px;  */
@@ -155,6 +173,14 @@
             <li><a href="#" id="login" onClick="logout(event)">Login</a></li>
         </ul>
     </div>
+    <!--Static Content-->
+    <h2 style="color: brown; margin-left: 100px;">Laugh Out Loud</h2>
+    <div class="flex-box-jokes" id="flex-box-jokes">
+    </div>
+    <!--Static Content Ends-->
+
+    <!--Add product Form-->
+    <h2 style="text-align: center;color: brown;">Add Product to the Page</h2>
     <div id="form">
         <div class="p-url">
             <label for="url">Image Url &emsp;&emsp;</label>
@@ -264,8 +290,8 @@
     </div>
 </div> -->
     <script>
-        const username = localStorage.getItem("username");
-        if(username) // if logged in
+        const accessToken = localStorage.getItem("access_token");
+        if(accessToken) // if logged in or usertoken exists in local storage
         {
             document.getElementById("login").innerText = "Logout";
         } 
@@ -282,6 +308,30 @@
                 window.location.href = "/login"; 
             }
         }
+        async function display_jokes()
+        {
+            url = "https://official-joke-api.appspot.com/jokes/ten";
+            try {
+	            const response = await fetch(url);
+	            const jokes = await response.json();
+	            console.log("jokes:",jokes);
+                for (let i in jokes) {
+                    if(i <= 8){  //display 9 jokes
+                    let card = `
+                    <div class="joke-card">
+                        <p class="setup">${jokes[i].setup}</p>
+                        <p class="punchline">${jokes[i].punchline}</p>
+                    </div>` ;
+                    flexbox = document.getElementById("flex-box-jokes");
+                    flexbox.innerHTML += card;
+                }}
+            } catch (error) 
+            {
+	            console.error("Inside catch display_jokes(): error: ",error);
+            }
+        }
+        display_jokes();
+        
         //POST method implementation:
         async function postProductData(url = "", data = {}) {
             console.log("url :", url)
@@ -301,14 +351,15 @@
 
         let submit = document.getElementById("submit")
         submit.addEventListener('click', async () => {
-
+          const access_token = localStorage.getItem("access_token");  
+          if (access_token){  //authentication
             let imgUrl = document.getElementById("url").value.trim();
             let name = document.getElementById("name").value.trim();
             let desc = document.getElementById("desc").value.trim();
             let price = document.getElementById("price").value.trim();
             let rating = document.getElementById("rating").value.trim();
 
-            console.log("Submitting add product data " + name)
+            console.log("Submitting product data " + name)
             const response = await postProductData("/add",
                 {
                     "p_url": imgUrl,
@@ -353,10 +404,12 @@
             {
                 alert("Prduct Add failed.Check if product url is unique");
             }
-        });
+        }});
 
         async function deleteItem(event)
         {
+          const access_token = localStorage.getItem("access_token");  
+          if(access_token){ //authentication
             const deleteProduct = event.target;
         
             const cardToDelete =((deleteProduct.parentElement).parentElement).parentElement;
@@ -374,9 +427,12 @@
             else{
                 console.log("Inside index.html: Product deletetion failed !")
             }
+          }
         }
         async function loadProducts()
         {
+           const access_token = localStorage.getItem("access_token"); 
+           if(access_token){ //authentication
             const response = await postProductData("/home")
             flexbox.innerHTML = " ";
             if (response.success) {
@@ -409,6 +465,7 @@
                 console.log("Inside index.html: Can't Load Home Page !");
                 alert("Can't Load Home Page..");
             }
+          }
         }
     </script>
 </body>

@@ -124,7 +124,7 @@
                 document.getElementById("user").value = " ";
                 document.getElementById("pwd").value = " " ;
                 // storing username in local storage
-                localStorage.setItem("username",username);
+                localStorage.setItem("access_token",response.token);
                 window.location.href = '/home';
             }
             else
