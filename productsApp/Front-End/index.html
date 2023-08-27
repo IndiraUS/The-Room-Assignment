@@ -82,12 +82,12 @@
             flex-wrap:wrap;
             box-sizing: border-box;
             justify-content: center;
+            margin-bottom: 25px;
         }
         .joke-card
         {
             width: 400px;
             margin:10px; 
-            /* padding: 5px; */
             margin-bottom: 0;
             border:1px solid dodgerblue;
             border-radius:14px;
@@ -97,17 +97,30 @@
             color:darkorchid;
             padding-left:15px;
         }
+        .flex-box-anime
+        {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            box-sizing: border-box;
+            gap:50px;
+        }
+        .anime-card
+        {
+            width: 325px;
+            padding: 10px;
+            border:1px solid lightgrey;
+            border-radius:14px;
+        }
         .flex-box-body{
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             box-sizing: border-box;
-            /* margin-top:50px; */
         }
         .card{
             width: 300px;
             height: 350px;
-            /* margin:10px;  */
             padding: 10px;
             margin-bottom: 0;
             /* border:1px solid lightgrey; */
@@ -168,8 +181,6 @@
         <h1 class="brand-name">The productApp</h1>
         <ul class="linkbar">
             <li style="color: white;">productApp</li>
-            <!-- <li><a href="/register">Register</a></li> -->
-            <!-- <li><a href="/login" id="login">Login</a></li> -->
             <li><a href="#" id="login" onClick="logout(event)">Login</a></li>
         </ul>
     </div>
@@ -179,8 +190,16 @@
     </div>
     <!--Static Content Ends-->
 
+    <!--Kitsu API content-->
+    <h2 style="color: brown; margin-left: 100px;">which is your favorite animation?</h2>
+    <div class="flex-box-anime" id="flex-box-anime">
+    </div>
+    <!--Kitsu API content Ends-->
+
     <!--Add product Form-->
     <h2 style="text-align: center;color: brown;">Add Product to the Page</h2>
+    <h2 style="text-align: center;color: brown; font-size: smaller;">add or delete any product to the below section using this form</h2>
+    <h2 style="text-align: center;color: brown; font-size: smaller;">You can load existing products from DB also.</h2>
     <div id="form">
         <div class="p-url">
             <label for="url">Image Url &emsp;&emsp;</label>
@@ -206,89 +225,10 @@
     </div>
     <button onClick="loadProducts()" style="float: right;">Load Products from DB</button><br><br>
     <hr style="color: lightgrey;">
-    <!--Body-->
-    <div class="flex-box-body" id="flexbox">
-        <!-- <div class="card">
-            <div class="c-top">
-                <img src="https://source.unsplash.com/1000x800/?cleanser" alt="Image" class="c-image">
-            </div>
-            <div class="c-bottom">
-                <div class="desc">
-                    <span class="heading" id="name">Face Cleanser</span><br>
-                    <span class="desription">Oil control charcol face wash</span><br>
-                    <span class="price"><a href="#" class="price-link"> Rs. 356 /- </a></span>
-                </div>
-                <div class="rating">
-                    <span class="value">*4.96</span><br>
-                    <a href="#" class="delete" onClick="deleteItem(event)">delete</a>
-                </div>
-            </div>
-        </div>
-    <div class="card">
-        <div class="c-top">
-            <img src="https://source.unsplash.com/1000x800/?eyeliner" alt="Image" class="c-image">
-        </div>
-        <div class="c-bottom">
-            <div class="desc">
-                <span class="heading">Mac eye liner</span><br>
-                <span class="desription">Pure Black</span><br>
-                <span class="price"><a href="#" class="price-link"> Rs. 856 /- </a></span>
-            </div>
-            <div class="rating">
-                <span class="value">*4.6</span><br>
-                <a href="#" class="delete" onClick="deleteItem(event)">delete</a>
-            </div>
-        </div>
+
+    <!--Products flex box-->
+    <div class="flex-box-body" id="flexbox">    
     </div>
-    <div class="card">
-        <div class="c-top">
-            <img src="https://source.unsplash.com/1000x800/?lotion" alt="Image" class="c-image">
-        </div>
-        <div class="c-bottom">
-            <div class="desc">
-                <span class="heading">body lotion</span><br>
-                <span class="desription">Enchanteur lotion</span><br>
-                <span class="price"><a href="#" class="price-link">Rs. 400 /- </a></span>
-            </div>
-            <div class="rating">
-                <span class="value">*4.3</span><br>
-                <a href="#" class="delete" onClick="deleteItem(event)">delete</a>
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="c-top">
-            <img src="https://source.unsplash.com/1000x800/?nail polish" alt="Image" class="c-image">
-        </div>
-        <div class="c-bottom">
-            <div class="desc">
-                <span class="heading">nail polish</span><br>
-                <span class="desription">sugar nail color</span><br>
-                <span class="price"><a href="#" class="price-link">Rs. 100 /- </a></span>
-            </div>
-            <div class="rating">
-                <span class="value">*3.9</span><br>
-                <a href="#" class="delete" onClick="deleteItem(event)">delete</a>
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="c-top">
-            <img src="https://source.unsplash.com/1000x800/?lipstic" alt="Image" class="c-image">
-        </div>
-        <div class="c-bottom">
-            <div class="desc">
-                <span class="heading">lipstick</span><br>
-                <span class="desription">color bar lipstick</span><br>
-                <span class="price"><a href="#" class="price-link">Rs. 900 /- </a></span>
-            </div>
-            <div class="rating">
-                <span class="value">*4.5</span><br>
-                <a href="#" class="delete" onClick="deleteItem(event)">delete</a>
-            </div>
-        </div>
-    </div>
-</div> -->
     <script>
         const accessToken = localStorage.getItem("access_token");
         if(accessToken) // if logged in or usertoken exists in local storage
@@ -308,6 +248,8 @@
                 window.location.href = "/login"; 
             }
         }
+
+        // display joke cards from https://official-joke-api.appspot.com/jokes/ten
         async function display_jokes()
         {
             url = "https://official-joke-api.appspot.com/jokes/ten";
@@ -322,8 +264,8 @@
                         <p class="setup">${jokes[i].setup}</p>
                         <p class="punchline">${jokes[i].punchline}</p>
                     </div>` ;
-                    flexbox = document.getElementById("flex-box-jokes");
-                    flexbox.innerHTML += card;
+                    const flexbox_joke = document.getElementById("flex-box-jokes");
+                    flexbox_joke.innerHTML += card;
                 }}
             } catch (error) 
             {
@@ -332,6 +274,43 @@
         }
         display_jokes();
         
+        // display anime cards from https://kitsu.docs.apiary.io/#introduction/json:api
+        async function display_animes()
+        {
+            url = "https://kitsu.io/api/edge/anime?filter[categories]=adventure";
+            try {
+	            const response = await fetch(url);
+	            const animes = await response.json();
+	            console.log("animes:",animes);
+                for (let i in animes.data) {
+                    // console.log("canonicalTitle: ",animes.data[i].attributes.canonicalTitle);
+                    // console.log("episodeLength:",animes.data[i].attributes.episodeLength);
+                    // console.log("posterImage:",animes.data[i].attributes.posterImage.large);
+                    const title = animes.data[i].attributes.canonicalTitle;
+                    const episodeLength = animes.data[i].attributes.episodeLength; 
+                    const posterImage = animes.data[i].attributes.posterImage.large;   
+                    let card = `
+                    <div class="anime-card">
+                        <div class="c-top">
+                            <img src="${posterImage}" alt="Image" class="c-image">
+                        </div>
+                        <div class="c-bottom">
+                            <div class="desc">
+                                <span class="title" id="title"><span style="color: crimson;">Title : </span>${title}</span><br>
+                                <span class="episode-length"><span style="color: crimson;">Episode legth : </span>${episodeLength}</span>
+                            </div>
+                        </div>
+                    </div> ` ;
+                    const flexbox_anime = document.getElementById("flex-box-anime");
+                    flexbox_anime.innerHTML += card;
+                }
+                }catch (error) 
+                {
+	                console.error("Inside catch display_animes(): error: ",error);
+                }
+        }
+        display_animes();
+
         //POST method implementation:
         async function postProductData(url = "", data = {}) {
             console.log("url :", url)
@@ -344,7 +323,7 @@
                 },
                 body: JSON.stringify(data),
             });
-            let result = await response.json(); // parses JSON response into native JavaScript objects
+            let result = await response.json(); 
             return result;
         }
         
@@ -394,10 +373,8 @@
                         </div>
                     </div>
                 </div>`;
-                console.log("flexbox",flexbox)
-                flexbox = document.getElementById("flexbox")
-                console.log("flexbox",flexbox)
-                flexbox.innerHTML += card;
+                const flexbox_prod = document.getElementById("flexbox")
+                flexbox_prod.innerHTML += card;
                 alert("Product successfully Added.See below");
             }
             else 
@@ -431,13 +408,15 @@
         }
         async function loadProducts()
         {
-           const access_token = localStorage.getItem("access_token"); 
+           const access_token = localStorage.getItem("access_token");
+           const flexbox_load = document.getElementById("flexbox"); 
            if(access_token){ //authentication
             const response = await postProductData("/home")
-            flexbox.innerHTML = " ";
+            // flexbox_load.innerHTML = " ";
             if (response.success) {
                 console.log("Inside index.html: Home Page: response.products: ",response.products)
                 const products = response.products;
+                flexbox_load.innerHTML = " ";
                 products.forEach(doc => {
                     let card = `
                 <div class="card">
@@ -456,8 +435,7 @@
                         </div>
                     </div>
                 </div>`; 
-                flexbox = document.getElementById("flexbox");
-                flexbox.innerHTML += card;
+                flexbox_load.innerHTML += card;
                 console.log("index.html: inside forEach()")
                 });
             }
